@@ -5,7 +5,7 @@
 *******************************************/
 #include <stdio.h>
 #include <math.h>
-//#include <ctype.h> perhaps pointless...but may be needed to work, i need it for "toupper()" which may or may not be there...
+#include <ctype.h> 
 
 trigonometry (void){
 	char selector;
@@ -42,7 +42,19 @@ lineline (void){
 	printf ("(o)pposite (a)djacent or (h)ypotenuse?");
 	scanf ("%c", selectorb);
 	flushall();
-	toupper (selectora);				//as below...
-	toupper (selectorb);				//dont know whether these will work without ctypes.h...
-	if (selectora == 'O' && selectorb == 'A' || selectora == 'A' && selectorb == 'O'){
+	toupper (selectora);
+	toupper (selectorb);
+	if (selectora == 'O' && selectorb == 'H' || selectora == 'H' && selectorb == 'O'){
+		linelinesoh();
+	}else if (selectora == 'A' && selectorb == 'H' || selectora == 'H' && selectorb == 'A'){
+		linelinecah();
+	{else if (selectora == 'O' && selectorb == 'A' || selectora == 'A' && selectorb == 'O'){
+		linelinetoa();
+	}
+}
+linelinesoh(){
+}
+lkinelinecah(){
+}
+linelinetoa(){
 }
