@@ -1,3 +1,8 @@
+/***************************************
+**There is nothing here yet, so using **
+**any trigonometry beyond pythagoras  **
+**in this programme is quite impossible...**
+***************************************/
 #include <stdio.h>
 #include <math.h>
 
