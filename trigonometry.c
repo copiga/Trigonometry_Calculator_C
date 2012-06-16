@@ -48,14 +48,28 @@ lineline (void){
 	printf ("(o)pposite (a)djacent or (h)ypotenuse?");
 	scanf ("%c", &selectorb);
 	flushall();
-	toupper (selectora);
-	toupper (selectorb);
-	if ((selectora == 'O' || selectora == 'H')&&(selectorb == 'O' || selectorb == 'H')){
-		linelinesoh();
-	}else if ((selectora == 'A' || selectora == 'H')&&(selectorb == 'A' || selectorb == 'H')){
-		linelinecah();
-	//{else{ if((selectora == 'O' || selectora == 'A')&&(selectorb == 'O' || selectorb == 'A')){
-	//	linelinetoa();
+	selectora = toupper (selectora);
+	selectorb = toupper (selectorb);
+	if (selectora == 'O'){
+		if (selectorb == 'H'){
+			linelinesoh();
+		}else if (selectorb == 'A'){
+			linelinetoa();
+		}
+	}else if (selectora == 'H'){
+		if (selectorb == 'O'){
+			linelinesoh();
+		} else if (selectorb == 'A'){
+			linelinetoa();
+		}
+	}else if (selectora == 'A'){
+		if (selectorb == 'O'){
+			linelinetoa();
+		}else if (selectorb == 'H'){
+			linelinecah();
+		}
+	}else{
+		main();
 	}
 }
 linelinesoh(){
