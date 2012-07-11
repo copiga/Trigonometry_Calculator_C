@@ -1,53 +1,143 @@
-/*******************************************
-**There is nothing here yet, so using     **
-**any trigonometry beyond pythagoras      **
-**in this programme is quite impossible...**
-*******************************************/
-#include <stdio.h>
-#include <math.h>
-#include <ctype.h> 
-#include <string.h>
-main (){trigonometry();}
-
-trigonometry (void){
+trigonometry (){
 	char selectora;
 	char selectorb;
-	printf ("do you have lines and angles, just angles or just lines? \nFor just angles please enter \"aa\" \nfor just lines please enter \"ll\" \nand for a mix of the two please enter \"la\"");
+	puts ("do you have lines and angles, just angles or just lines? \nIf you have both angles and lines please enter \"al\"\nIf you only have lines please enter \"ll\"\nOr for the main menu please enter \"m\"");
 	scanf ("%c%c", &selectora, &selectorb);
 	flushall ();
 	selectora = toupper (selectora);
 	selectorb = toupper (selectorb);
-	if (selectora == 'A' && selectorb == 'A'){
-		angleangle();
-	}else if (selectora == 'L' && selectorb == 'L'){
+	
+	if (selectora == 'L' && selectorb == 'L'){
 		lineline();
-	}else if (selectora == 'A' && selectorb == 'L' || selectora == "L" && selectorb == 'A'){
+	}else if (selectora == 'A' && selectorb == 'L'){
 		angleline();
-	}else{
+	}else if (selectora == 'L' && selectorb == 'A'){
+		angleline();
+	}else if (selectora == 'M' || selectorb == 'M'){
 		main();
+	}else {
+		trigonometry();
 	}
 }
 
-angleangle (void){
-	printf ("dbhdf");
+angleline (){
+	char selector;
+	puts ("what type of line do you have?\nis it (o)pposite or (a)djacent to the angle that you have or is it the (h)ypotenuse?\nor if you wish to go to the previous menu please enter \"p\"");
+	scanf ("%c", &selector);
+	flushall();
+	selector = toupper (selector);
+	if (selector == 'A'){
+		anglelineadjacent();
+	} else if (selector == 'O'){
+		anglelineopposite();
+	} else if (selector == 'H'){
+		anglelinehypotenuse();
+	} else if (selector == 'P'){
+		trigonometry();
+	} else {
+		angleline();
+	}
 }
 
-angleline (void){
-printf ("uuuuuu");
+anglelineadjacent(){
+	double a,h,o,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("please enter the length of the adjacent line\n");
+	scanf ("%lf", &a);
+	flushall ();
+	puts ("please enter the size of the angle in degrees\n");
+	scanf ("%lf", &A);
+	flushall ();
+	A = A/(180/pi);
+	h = a/cos(A);
+	o = a*tan(A);
+	A = A*(180/pi);
+	B = 90;
+	C = 180-(A+B);
+	printf ("the hypotenuse is %lf long\n", h);
+	printf ("the adjacent is %lf long\n", a);
+	printf ("the opposite is %lf long\n", o);
+	printf ("the angle you gave me is %lf degrees\n", A);
+	printf ("angle B is %lf\n", B);
+	printf ("angle C is %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
 }
 
-lineline (void){
-	char selectora, selectorb, selectorc;
-	double a,b,c,A,B,C;
-	printf ("which types of line do you have?\n");
-	printf ("please enter the first type of line you have\n");
-	printf ("(o)pposite (a)djacent or (h)ypotenuse?");
-	scanf ("%c", &selectora);
+anglelinehypotenuse(){
+	double a,h,o,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("please enter the length of the hypotenuse\n");
+	scanf ("%lf", &h);
+	flushall ();
+	puts ("please enter the size of the angle in degrees\n");
+	scanf ("%lf", &A);
+	flushall ();
+	A = A/(180/pi);
+	a = h*cos(A);
+	o = a*tan(A);
+	A = A*(180/pi);
+	B = 90;
+	C = 180-(A+B);
+	printf ("the hypotenuse is %lf long\n", h);
+	printf ("the adjacent is %lf long\n", a);
+	printf ("the opposite is %lf long\n", o);
+	printf ("the angle you gave me was %lf degrees\n", A);
+	printf ("angle B is %lf\n", B);
+	printf ("angle C is %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
+}
+
+anglelineopposite(){
+	double a,h,o,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("please enter the length of the opposite\n");
+	scanf ("%lf", &o);
+	flushall ();
+	puts ("please enter the size of the angle in degrees\n");
+	scanf ("%lf", &A);
+	flushall ();
+	A = A/(180/pi);
+	a = h*cos(A);
+	h = o/sin(A);
+	A = A*(180/pi);
+	B = 90;
+	C = 180-(A+B);
+	printf ("the hypotenuse is %lf long\n", h);
+	printf ("the adjacent is %lf long\n", a);
+	printf ("the opposite is %lf long\n", o);
+	printf ("the angle you gave me was %lf degrees\n", A);
+	printf ("angle B is %lf\n", B);
+	printf ("angle C is %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
+}
+
+lineline (){
+	char selectora, selectorb;
+	puts ("which lines do you have?\nplease enter \"ah\" for adjacent and hypotenuse, \"oh\" for opposite and hypotenuse or \"oa\" for opposite and adjacent\nOr if you want to go to the previous menu please enter \"P\"");
+	scanf ("%c%c", &selectora, &selectorb);
 	flushall();
-	printf ("please enter the second type of line you have\n");
-	printf ("(o)pposite (a)djacent or (h)ypotenuse?");
-	scanf ("%c", &selectorb);
-	flushall();
+
 	selectora = toupper (selectora);
 	selectorb = toupper (selectorb);
 	if (selectora == 'O'){
@@ -60,7 +150,7 @@ lineline (void){
 		if (selectorb == 'O'){
 			linelinesoh();
 		} else if (selectorb == 'A'){
-			linelinetoa();
+			linelinecah();
 		}
 	}else if (selectora == 'A'){
 		if (selectorb == 'O'){
@@ -68,16 +158,92 @@ lineline (void){
 		}else if (selectorb == 'H'){
 			linelinecah();
 		}
+	}else if (selectora == 'P' || selectorb == 'P'){
+		trigonometry();
 	}else{
-		main();
+		lineline();
 	}
 }
+
 linelinesoh(){
-printf ("linelinesoh");
+	double a,o,h,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("please enter the opposite\n");
+	scanf ("%lf", &o);
+	flushall();
+	printf ("please enter the hypotenuse\n");
+	scanf ("%lf",&h);
+	flushall();
+	A = asin (o/h);
+	A = A*180/pi;
+	B = 90;
+	C = 180-(A+B);
+	printf ("A = %lf\n", A);
+	printf ("B = %lf\n", B);
+	printf ("C = %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
 }
+
 linelinecah(){
-printf ("linelinecah");
+	double a,o,h,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("Calculating \"A\" from the adjacent and hypotenuse\n");
+	puts ("please enter the adjacent\n");
+	scanf ("%lf",&a);
+	flushall();
+	printf ("please enter the hypotenuse\n");
+	scanf ("%lf",&h);
+	flushall();
+	A = a/h;
+	A = acos (A);
+	A = A *(180/pi);
+	B = 90;
+	C = 180-(A+B);
+	printf ("A = %lf\n", A);
+	printf ("B = %lf\n", B);
+	printf ("C = %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
 }
+
 linelinetoa(){
-printf ("linelinetoa");
+	double a,o,h,A,B,C,pi;
+	pi = 3.14159265358979323;
+	puts ("Calculating \"A\" from the adjacent and opposite\n");
+	puts ("please enter the adjacent\n");
+	scanf ("%lf",&a);
+	flushall();
+	printf ("please enter the opposite\n");
+	scanf ("%lf",&o);
+	flushall();
+	A = o/a;
+	A = atan (A);
+	A = A * 180/pi;
+	B = 90;
+	C = 180-(A+B);
+	printf ("A = %lf\n", A);
+	printf ("B = %lf\n", B);
+	printf ("C = %lf\n", C);
+	sleep (1000);
+	printf ("\n\npress any key to exit or \"m\" to start from the beginning");
+	if (toupper(getchar())=='M'){
+		flushall();
+		main();
+	}else{
+		return (0);
+	}
 }
+
