@@ -111,8 +111,8 @@ anglelineopposite(){
 	scanf ("%lf", &A);
 	flushall ();
 	A = A/(180/pi);
-	a = h*cos(A);
 	h = o/sin(A);
+	a = h*cos(A);
 	A = A*(180/pi);
 	B = 90;
 	C = 180-(A+B);
